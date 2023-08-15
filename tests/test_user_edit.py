@@ -65,7 +65,7 @@ class TestUserEdit(BaseCase):
 
         user_id = register_data["user_id"]
 
-        #Edit
+        # Edit
         new_value = "Changed Value"
 
         response2 = MyRequests.put(

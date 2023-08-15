@@ -5,8 +5,10 @@ import pytest
 import random
 import string
 from datetime import datetime
+import allure
 
 
+@allure.epic('Edit cases')
 class TestUserEdit(BaseCase):
     edit_params = [
         ("username"),
@@ -15,6 +17,8 @@ class TestUserEdit(BaseCase):
         ("email")
     ]
 
+    @allure.title("Редактирование только что созданного юзера")
+    @allure.severity('critical')
     def test_edit_just_created_user(self):
         # REGISTER
         register_data = BaseCase.registration_user(self)
@@ -57,7 +61,7 @@ class TestUserEdit(BaseCase):
             "Wrong name of the user after edit"
         )
 
-    # Попытаемся изменить данные пользователя, будучи неавторизованными
+    @allure.title("Попытаемся изменить данные пользователя, будучи неавторизованными")
     @pytest.mark.parametrize("param", edit_params)
     def test_edit_user_without_auth(self, param):
         # REGISTER
